@@ -19,9 +19,8 @@ public class LinearFollower : MonoBehaviour {
 	
 	void Update () {
         transform.position = Vector3.Lerp(_startingPos, dstPoint, sampleCurve.Evaluate(_t));
+        transform.LookAt(dstPoint);
         IncreaseT();
-        Vector3 nextPos = Vector3.Lerp(_startingPos, dstPoint, sampleCurve.Evaluate(_t));
-        transform.rotation = _startingRot * Quaternion.FromToRotation(transform.position, nextPos - transform.position);
     }
 
     protected void IncreaseT()

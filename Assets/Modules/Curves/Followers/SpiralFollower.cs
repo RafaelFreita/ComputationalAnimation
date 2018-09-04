@@ -12,9 +12,11 @@ public class SpiralFollower : CircularFollower {
 
         IncreaseT();
 
-        float nextRadius = radius * (1f - sampleCurve.Evaluate(_t));
-        Vector3 nextPos = Circular.Evaluate(nextRadius, sampleCurve.Evaluate(_t)) + _startingPos;
-        //transform.rotation= _startingRot * Quaternion.FromToRotation(transform.position, nextPos - transform.position);
+        // Adding 0.05f to add some space between current position and future position for a more accurate rotation
+        float nextRadius = radius * (1f - sampleCurve.Evaluate(_t+0.05f));
+        Vector3 nextPos = Circular.Evaluate(nextRadius, sampleCurve.Evaluate(_t+0.05f) * spins) + _startingPos;
+        
+        transform.LookAt(nextPos);
     }
 
     protected new void IncreaseT()

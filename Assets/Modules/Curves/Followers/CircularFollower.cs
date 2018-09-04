@@ -22,8 +22,10 @@ public class CircularFollower : MonoBehaviour {
     {
         transform.position = Circular.Evaluate(radius, sampleCurve.Evaluate(_t)) + _startingPos;
         IncreaseT();
-        Vector3 nextPos = Circular.Evaluate(radius, sampleCurve.Evaluate(_t)) + _startingPos;
-        transform.rotation = _startingRot * Quaternion.FromToRotation(transform.position, nextPos - transform.position);
+
+        // Adding 0.05f to add some space between current position and future position for a more accurate rotation
+        Vector3 nextPos = Circular.Evaluate(radius, sampleCurve.Evaluate(_t+0.05f)) + _startingPos;
+        transform.LookAt(nextPos);
     }
 
     protected void IncreaseT()

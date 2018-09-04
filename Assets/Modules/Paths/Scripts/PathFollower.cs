@@ -33,8 +33,10 @@ public class PathFollower : MonoBehaviour {
         transform.position = Vector3.Lerp(_points[LoopIndex(currentIndex)], _points[LoopIndex(currentIndex+1)], sampleCurve.Evaluate(_t));
         IncreaseT();
 
-        Vector3 nextPos = Vector3.Lerp(_points[LoopIndex(currentIndex)], _points[LoopIndex(currentIndex + 1)], sampleCurve.Evaluate(_t));
-        transform.rotation = _startingRot * Quaternion.FromToRotation(transform.position, nextPos - transform.position);
+        // Adding 0.05f to add some space between current position and future position for a more accurate rotation
+        Vector3 nextPos = Vector3.Lerp(_points[LoopIndex(currentIndex)], _points[LoopIndex(currentIndex + 1)], sampleCurve.Evaluate(_t + 0.05f));
+        //transform.rotation = _startingRot * Quaternion.FromToRotation(transform.position, nextPos - transform.position);
+        transform.LookAt(nextPos);
     }
 
     private int LoopIndex(int i)
