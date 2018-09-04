@@ -10,11 +10,9 @@ public class LinearFollower : MonoBehaviour {
 
     private Vector3 _startingPos;
     private float _t = 0.0f;
-    private Quaternion _startingRot;
 
     void Start () {
         _startingPos = transform.position;
-        _startingRot = transform.rotation;
     }
 	
 	void Update () {
@@ -25,7 +23,7 @@ public class LinearFollower : MonoBehaviour {
 
     protected void IncreaseT()
     {
-        _t += rpm / 60f;
+        _t += rpm / 60f * Time.deltaTime * 60.0f;
         if (_t >= 1.0f)
         {
             _t -= 1.0f;

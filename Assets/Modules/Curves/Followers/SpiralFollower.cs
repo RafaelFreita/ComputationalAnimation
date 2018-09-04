@@ -21,7 +21,7 @@ public class SpiralFollower : CircularFollower {
 
     protected new void IncreaseT()
     {
-        _t += rpm / 60f;
+        _t += rpm / 60f * Time.deltaTime * 60.0f;
         if (_t >= 1.0f)
         {
             _t -= 1.0f;

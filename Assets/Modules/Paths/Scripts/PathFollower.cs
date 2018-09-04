@@ -18,19 +18,18 @@ public class PathFollower : MonoBehaviour {
 
     private float _t;
     private Vector3[] _points;
-    protected Quaternion _startingRot;
 
     private void Start()
     {
         _points = pathCreator.path.CalculateEvenlySpacedPoints(spacing, resolution);
-
-        _startingRot = transform.rotation;
     }
 
     private void Update()
     {
-        int currentIndex = Mathf.CeilToInt((_points.Length * sampleCurve.Evaluate(_t)));
-        transform.position = Vector3.Lerp(_points[LoopIndex(currentIndex)], _points[LoopIndex(currentIndex+1)], sampleCurve.Evaluate(_t));
+        float sampleT = sampleCurve.Evaluate(_t);
+        Debug.Log(sampleT);
+        int currentIndex = Mathf.RoundToInt((_points.Length * sampleT));
+        transform.position = Vector3.Lerp(_points[LoopIndex(currentIndex)], _points[LoopIndex(currentIndex+1)], sampleT);
         IncreaseT();
 
         // Adding 0.05f to add some space between current position and future position for a more accurate rotation
@@ -46,7 +45,7 @@ public class PathFollower : MonoBehaviour {
 
     private void IncreaseT()
     {
-        _t += rpm / 60f;
+        _t += rpm / 60f * Time.deltaTime * 60.0f;
         if (_t >= 1.0f)
         {
             _t -= 1.0f;

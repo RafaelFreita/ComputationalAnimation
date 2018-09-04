@@ -9,13 +9,11 @@ public class CircularFollower : MonoBehaviour {
     public SampleCurve sampleCurve;
 
     protected Vector3 _startingPos;
-    protected Quaternion _startingRot;
     protected float _t = 0.0f;
 
     private void Start()
     {
         _startingPos = transform.position;
-        _startingRot = transform.rotation;
     }
 
     public void Update()
@@ -30,7 +28,7 @@ public class CircularFollower : MonoBehaviour {
 
     protected void IncreaseT()
     {
-        _t += rpm / 60f;
+        _t += rpm / 60f * Time.deltaTime * 60.0f;
         if(_t >= 1.0f)
         {
             _t -= 1.0f;

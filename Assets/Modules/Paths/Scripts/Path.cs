@@ -234,6 +234,7 @@ public class Path
     }
 
 
+
     private void AutoSetAllAffectedControlPoints(int updatedAnchorIndex)
     {
         for (int i = updatedAnchorIndex - 3; i <= updatedAnchorIndex + 3; i += 3)
