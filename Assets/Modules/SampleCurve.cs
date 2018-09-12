@@ -9,6 +9,7 @@ public class SampleCurve : MonoBehaviour {
 
     public float Evaluate(float x)
     {
+        x %= 1.0f;
         return Bezier.EvaluateCubicCurve(nodes[0], nodes[1], nodes[2], nodes[3], x).y;
     }
 

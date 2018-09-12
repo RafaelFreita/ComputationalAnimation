@@ -378,8 +378,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spacing: 0.5
   resolution: 1
-  pathCreator: {fileID: 258315188}
   sampleCurve: {fileID: 1641397709}
+  pathCreator: {fileID: 258315188}
   rpm: 0.99
 --- !u!114 &1641397709
 MonoBehaviour:
@@ -394,8 +394,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodes:
   - {x: 0, y: 0, z: 0}
-  - {x: 0.24, y: 0, z: 0}
-  - {x: 0.72, y: 0, z: 0}
+  - {x: 0.27, y: 0.26, z: 0}
+  - {x: 0.72, y: 0.75, z: 0}
   - {x: 1, y: 1, z: 0}
 --- !u!1 &1706163032
 GameObject:
